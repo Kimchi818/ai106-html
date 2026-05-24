@@ -3,34 +3,121 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AI106 HTML project boilerplate" />
-    <title>AI106 HTML</title>
+    <meta name="description" content="A photography portfolio website showcasing a curated gallery of photos." />
+    <title>Alex Kim | Photography Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header class="site-header">
-      <h1>AI106 HTML</h1>
-      <p class="tagline">Starter boilerplate — edit and build from here.</p>
+      <div class="brand-panel">
+        <p class="eyebrow">Photography Portfolio</p>
+        <h1>Alex Kim</h1>
+      </div>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
     <main id="main">
-      <section class="card" aria-labelledby="welcome-heading">
-        <h2 id="welcome-heading">Welcome</h2>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Storytelling in light</p>
+          <h2>Capturing moments with a calm, cinematic style.</h2>
+          <p>
+            I create photo stories for people, places, and brands using soft
+            color palettes, natural motion, and thoughtful composition.
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="button" id="view-gallery">View Gallery</button>
+            <a class="button button-secondary" href="#contact">Book a Session</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-stat">
+            <strong>120+</strong>
+            <span>Projects</span>
+          </div>
+          <div class="hero-stat">
+            <strong>8 years</strong>
+            <span>Experience</span>
+          </div>
+          <div class="hero-stat">
+            <strong>150+</strong>
+            <span>Featured frames</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="panel about-panel">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>Thoughtful portraits and landscape photography</h2>
+        </div>
         <p>
-          This project includes separate HTML, CSS, and JavaScript files. Open
-          <code>index.html</code> in a browser or use a local dev server to
-          get started.
+          I specialize in photographic storytelling with a polished look that
+          feels authentic. My work blends editorial lighting, environmental
+          portraiture, and fine art details to create timeless images.
         </p>
-        <button type="button" id="demo-button" class="button">
-          Try the demo
-        </button>
-        <p id="demo-output" class="demo-output" aria-live="polite"></p>
+      </section>
+
+      <section id="gallery" class="panel gallery-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Gallery</p>
+          <h2>Selected works</h2>
+        </div>
+        <div class="gallery-grid">
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" data-caption="Misty mountain sunrise">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Misty mountain sunrise" />
+          </button>
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80" data-caption="Quiet seaside portrait">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80" alt="Quiet seaside portrait" />
+          </button>
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80" data-caption="Sunlit architecture details">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Sunlit architecture details" />
+          </button>
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80" data-caption="Street photography at golden hour">
+            <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=600&q=80" alt="Street photography at golden hour" />
+          </button>
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80" data-caption="Moody coffee shop moment">
+            <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=600&q=80" alt="Moody coffee shop moment" />
+          </button>
+          <button type="button" class="gallery-card" data-full="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80" data-caption="Soft portrait by the window">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80" alt="Soft portrait by the window" />
+          </button>
+        </div>
+        <p class="gallery-note">Tap any photo to enlarge.</p>
+      </section>
+
+      <section id="contact" class="panel contact-panel">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>Ready to capture your next story?</h2>
+        </div>
+        <p>Reach out for portraits, editorial sessions, and custom photography projects.</p>
+        <a class="button" href="mailto:hello@alexkimphoto.com">Send a Message</a>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>&copy; <span id="year"></span> AI106 HTML</p>
+      <p>&copy; <span id="year"></span> Alex Kim Photography</p>
     </footer>
+
+    <div class="modal" id="image-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-action="close"></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button type="button" class="modal-close" aria-label="Close preview" data-action="close">×</button>
+        <img id="modal-image" src="" alt="" />
+        <p id="modal-caption"></p>
+      </div>
+    </div>
 
     <script src="js/main.js" defer></script>
   </body>
