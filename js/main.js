@@ -1,75 +1,72 @@
 /**
- * Portfolio website — main entry point
+ * Kimchi Education — main entry point
  *
- * Handles year insert, gallery preview modal, and page interactions.
+ * Handles year display, math helper evaluation, and contact form feedback.
  */
 
 (function () {
   "use strict";
 
   const yearEl = document.getElementById("year");
-  const viewGalleryButton = document.getElementById("view-gallery");
-  const galleryGrid = document.querySelector(".gallery-grid");
-  const modal = document.getElementById("image-modal");
-  const modalImage = document.getElementById("modal-image");
-  const modalCaption = document.getElementById("modal-caption");
+  const mathForm = document.getElementById("math-form");
+  const mathInput = document.getElementById("math-input");
+  const resultEl = document.getElementById("calculator-result");
+  const contactForm = document.getElementById("contact-form");
+  const contactFeedback = document.getElementById("contact-feedback");
 
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  const openModal = (imageSrc, altText, captionText) => {
-    if (!modal || !modalImage || !modalCaption) return;
-
-    modalImage.src = imageSrc;
-    modalImage.alt = altText;
-    modalCaption.textContent = captionText || altText;
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
+  const sanitizeExpression = (value) => {
+    return value.replace(/×/g, "*").replace(/÷/g, "/").trim();
   };
 
-  const closeModal = () => {
-    if (!modal) return;
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-    modalImage.src = "";
+  const isValidExpression = (expression) => {
+    return /^[0-9+\-*/().\s]+$/.test(expression);
   };
 
-  if (viewGalleryButton) {
-    viewGalleryButton.addEventListener("click", () => {
-      document.getElementById("gallery")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    });
-  }
+  const calculate = (expression) => {
+    try {
+      const sanitized = sanitizeExpression(expression);
+      if (!isValidExpression(sanitized)) {
+        return { error: "Please use numbers and + - × ÷ ( ) only." };
+      }
 
-  if (galleryGrid) {
-    galleryGrid.addEventListener("click", (event) => {
-      const card = event.target.closest(".gallery-card");
-      if (!card) return;
-      const fullSrc = card.dataset.full;
-      const caption = card.dataset.caption || "Photo preview";
-      const altText = card.querySelector("img")?.alt || "Photo preview";
-      openModal(fullSrc, altText, caption);
-    });
-  }
+      // eslint-disable-next-line no-new-func
+      const value = new Function(`return ${sanitized}`)();
+      if (typeof value !== "number" || !Number.isFinite(value)) {
+        return { error: "Unable to calculate that expression." };
+      }
 
-  if (modal) {
-    modal.addEventListener("click", (event) => {
-      const target = event.target;
-      if (
-        (target instanceof HTMLElement && target.dataset.action === "close") ||
-        target === modal
-      ) {
-        closeModal();
+      return { value };
+    } catch (error) {
+      return { error: "Invalid maths expression. Try again." };
+    }
+  };
+
+  if (mathForm && mathInput && resultEl) {
+    mathForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const expression = mathInput.value;
+      const { value, error } = calculate(expression);
+
+      if (error) {
+        resultEl.textContent = error;
+        resultEl.style.color = "#c62828";
+      } else {
+        resultEl.textContent = `Answer: ${value}`;
+        resultEl.style.color = "#444a54";
       }
     });
   }
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
+  if (contactForm && contactFeedback) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      contactFeedback.textContent = "Thanks for your inquiry. We will respond shortly.";
+      contactFeedback.style.color = "#238fb2";
+      contactForm.reset();
+    });
+  }
 })();
